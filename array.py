@@ -166,3 +166,129 @@ def reverse(nums,left,right):
 reverse(n-k,n-1) #reverse last K element
 reverse(0,n-k-1) #reverse remainig element
 reverse(0,n-1) #reverse whole array
+
+#move zeros to end
+# brute force
+nums = [1,0,2,4,3,0,0,3,5,1]
+
+count = nums.count(0)
+
+for _ in range(count):
+    nums.remove(0)    # removes the first occurrence of 0
+    nums.append(0)
+
+print(nums)
+
+#brute force 2
+nums = [1,0,2,4,3,0,0,3,5,1]
+n = len(nums)
+temp = []
+for i in range(0,n):
+    if nums[i]!=0:
+        temp.append(nums[i])
+nz = len(temp)
+for i in range(0,nz):
+    nums[i] = temp[i]
+for i in range(nz,n):
+    nums[i] = 0
+
+#optimal solution in single pass
+nums = [1,0,2,4,3,0,0,3,5,1]
+if len(nums) == 1:
+    print
+i = 0
+while i<len(nums):
+    if nums[i] == 0:
+        break
+    i+=1
+if i==len(nums):
+    print
+j = i+1
+while j<len(nums):
+    if nums[j]!=0:
+        nums[i],nums[j] = nums[j],nums[i]
+        i+=1
+    j+=1
+
+#linear search
+nums = [5,3,9,8,1,6,4,-10,-100]
+target = 4
+n = len(nums)
+for i in range(0,n):
+    if nums[i] == target:
+        print(i)
+print("-1")
+
+#merge 2 sorted list , remove duplicataes and sort them
+nums1 = [1,1,1,1]
+nums2 = [2,2,2,2]
+#brute force
+# Merge
+nums = nums1 + nums2
+
+# Remove duplicates
+nums = list(set(nums))
+
+# Sort
+nums.sort()
+
+print(nums)
+
+#optimal using  pointers
+def union(nums1, nums2):
+    n = len(nums1)
+    m = len(nums2)
+
+    result = []
+    i = 0
+    j = 0
+
+    while i < n and j < m:
+        if nums1[i] <= nums2[j]:
+            if len(result) == 0 or result[-1] != nums1[i]:
+                result.append(nums1[i])
+            i += 1
+        else:
+            if len(result) == 0 or result[-1] != nums2[j]:
+                result.append(nums2[j])
+            j += 1
+
+    while i < n:
+        if len(result) == 0 or result[-1] != nums1[i]:
+            result.append(nums1[i])
+        i += 1
+
+    while j < m:
+        if len(result) == 0 or result[-1] != nums2[j]:
+            result.append(nums2[j])
+        j += 1
+
+    return result
+
+
+nums1 = [1, 1, 1, 2, 4, 6, 7]
+nums2 = [1, 2, 3, 6, 7, 8, 9, 10]
+
+print(union(nums1, nums2))
+
+#find the missing number
+nums = [9,6,4,2,3,5,7,0,1]
+n = len(nums)
+for i in range(0,n+1):
+    if i not in nums:
+        print(i)
+
+#optimal
+n = len(nums)
+freq = {}
+for i in range(0,n+1):
+    freq[i] = 0
+for num in nums:
+    freq[num] = 1
+for k,u in freq.items():
+    if u==0:
+        print(k)
+#more optimal
+nums = [9,6,4,2,3,5,7,0,1]
+n = len(num)
+print (n * (n + 1) // 2) - sum(nums)
