@@ -53,3 +53,36 @@ n = len(nums)
 l = n%k
 nums[:] = nums[n-k:] + nums[:n-k]
 print(nums)
+
+##move zeros to end
+# brute force
+nums = [1,0,2,4,3,0,0,3,5,1]
+n = len(nums)
+for i in range(0,n):
+    nums.remove(0)
+    nums.append(0)
+print(nums)
+
+#linear search
+
+nums = [5,3,9,8,1,6,4,-10,-100]
+target = 4
+n = len(nums)
+for i in range(0,n):
+    if nums[i]==target:
+        print(i)
+print("-1")
+
+
+#merge 2 sorted list , remove duplicataes and sort them
+nums1 = [1,1,3,1,4,5,6]
+nums2 = [2,2,2,2,100,15]
+n = nums1+nums2
+n = list(set(n))
+n.sort()
+print(n)
+
+#find the missing number
+nums = [9,6,4,2,3,5,7,0,1]
+n = len(nums)
+print(n*(n+1)//2 - sum(nums))
