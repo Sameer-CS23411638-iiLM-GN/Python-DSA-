@@ -292,3 +292,36 @@ for k,u in freq.items():
 nums = [9,6,4,2,3,5,7,0,1]
 n = len(num)
 print (n * (n + 1) // 2) - sum(nums)
+
+#max consecutive one
+
+nums = [1,0,0,0,1,1,1,1,1,0,0,0,1,1,0]
+n = len(nums)
+count = float("-inf")
+largest = float("-inf")
+for i in range(0,n):
+    if nums[i] == 1:
+        count += 1
+    else:
+        count = 0
+    
+    largest = max(count,largest)
+print(largest)
+
+#2 sum problem
+
+nums[1,3,5,9,1,3,1,4]
+target = 10
+
+  # n = len(nums)
+        # for i in range(0,n-1):
+        #     for j in range(i+1,n):
+        #         if nums[i]+nums[j] == target:
+        #             return(i,j)
+n = len(nums)
+hash_map = {}
+for i in range(0,n):
+    remaining = target - nums[i]
+    if remaining in hash_map:
+        print[hash_map[remaining],i]
+    hash_map[nums[i]] = i
