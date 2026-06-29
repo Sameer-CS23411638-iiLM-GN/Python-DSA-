@@ -325,3 +325,107 @@ for i in range(0,n):
     if remaining in hash_map:
         print[hash_map[remaining],i]
     hash_map[nums[i]] = i
+
+#maximum sub array
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+maxi = float("-inf")
+for i in range(0,n):
+    total = 0
+    for j in range(i,n):
+        total = total + nums[j]
+        maxi = max(maxi,total)
+print(maxi)
+
+#optimal 
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+maxi = float("-inf")
+total = 0
+for i in range(0,n):
+    total = total + nums[i]
+    maxi = max(maxi,total)
+    if total<0:
+        total = 0
+print(maxi)
+
+#buy and sell stock
+prices = [7,2,1,5,6,4,8]
+n = len(nums)
+max_profit = 0
+for i in range(0,n):
+    for j in range(i+1,n):
+        if prices[j]>prices[i]:
+            p = prices[j]-prices[i]
+            max_profit = max(max_profit,p)
+print(max_profit)
+
+#optimal
+max_profit=0
+min_price = float("inf")
+n = len(prices)
+for i in range(0,n):
+    min_price=min(min_price,prices[i])
+    max_profit=max(max_profit,prices[i]-min_price)
+print (max_profit)
+
+
+max_profit = 0
+min_price = float("inf")
+n = len(prices)
+for i in range(0,n):
+    min_prices = min(min_prices,prices[i])
+    max_profit = max(max_profit,prices[i]-min_prices)
+print(max_profit)
+
+#rearrange elements by sign
+nums = [5,10,-3,-1,-10,6]
+pos = [5,10,6]
+neg = [-3,-1,-10]
+for i in range(0,len(pos)):
+    nums[2*i] =pos[i]
+    nums[(2*i)+1] = neg[i]
+print(nums)
+
+#optimal approach
+nums = [5,10,-3,-1,-10,6]
+n = len(nums)
+result = [0]*n
+pos,neg = 0,1
+for i in range(0,n):
+    if nums[i]>0:
+        result[pos]=nums[i]
+        pos+=2
+    else:
+        result[neg] = nums[i]
+        neg+=2
+print(result)
+
+#LCS
+nums=[1,99,101,98,2,5,3,100,1,1]
+n = len(nums)
+max_count=0
+for i in range(0,n):
+    num = nums[i]
+    count = 1
+    while  nums+1 in nums:
+        count+=1
+        num = num+1
+    max_count = max(max_count,count)
+print(max_count)
+
+#optimal
+nums=[1,99,101,98,2,5,3,100,1,1]
+my_set = set()
+for i in range(0,n):
+    my_set.odd(nums[i])
+longest=0
+for num in my_set:
+    if num-1 not in my_set:
+        x = num
+        count = 1
+        while x+1 in my_set:
+            count+=1
+            x+=1
+        longest=max(longest,count)
+print(longest)
