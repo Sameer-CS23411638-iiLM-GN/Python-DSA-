@@ -429,3 +429,139 @@ for num in my_set:
             x+=1
         longest=max(longest,count)
 print(longest)
+
+#print the matirx
+#print the matirx
+nums = [
+    ["5", "1", "8"],
+    ["7", "6", "3"],
+    ["2", "1", "9"]
+]
+#print upper triangle
+row = len(nums)
+cols = len(nums[0])
+for i in range(0,row):
+    for j in range(0,cols):
+        if j>=i:
+            print(nums[i][j],end = "")
+        else:
+            print("*",end = "")
+    print()
+    
+#print lower triangle
+row = len(nums)
+cols = len(nums[0])
+for i in range(0,row):
+    for j in range(0,cols):
+        if j<=i:
+            print(nums[i][j],end = "")
+        else:
+            print("*",end = "")
+    print()
+    
+#print the diagonal
+row = len(nums)
+cols = len(nums[0])
+for i in range(0,row):
+    for j in range(0,cols):
+        if j==i:
+            print(nums[i][j],end = "")
+        else:
+            print("*",end = "")
+    print()
+
+#transpose of a matrix
+nums = [
+    ["5", "1", "8"],
+    ["7", "6", "3"],
+    ["2", "1", "9"]
+]
+rows = len(nums)
+cols = len(nums[0])
+result = [[0]*rows for _ in range(cols)]
+#[[0,0],[0,0],[0,0]]
+for i in range(0,rows):
+    for j in range(0,cols):
+        result[j][i] = nums[i][j]
+print(result)
+
+#set matrix zero
+matrix = [
+    ["5", "1", "8"],
+    ["7", "6", "0"],
+    ["2", "0", "9"]
+]
+
+def mark_infinity(matrix,row,col):
+    r = matrix(nums) , c= len(matrix[0])
+    for i in range(0,r):
+        if matrix[i][col]!=0:
+            matrix[i][col] = float("inf")
+    for j in range(0,c):
+        if matrix[row][j]!=0:
+            matrix[row][j]=float("inf")
+        
+def setZeros(self,matrix) -> None:
+    r = len(matrix) , c = len(matrix[0])
+    for i in range(0,r):
+        for j in range(0,c):
+            if matrix[i][j]==0:
+                self.mark_infinity(matrix,i,j)
+    
+    for i in range(0,r):
+        for j in range(0,c):
+            if matrix[i][j] == float("inf"):
+                    matrix[i][j]=0
+
+#optimal
+matrix = [
+    ["5", "1", "8"],
+    ["7", "6", "0"],
+    ["2", "0", "9"]
+]
+class Solution:
+    #def setZeroes(self, matrix: List[List[int]]) -> None:
+        r = len(matrix)
+        c = len(matrix[0])
+
+        rowtrack = [0] * r
+        coltrack = [0] * c
+
+        # Mark rows and columns
+        for i in range(r):
+            for j in range(c):
+                if matrix[i][j] == 0:
+                    rowtrack[i] = -1
+                    coltrack[j] = -1
+
+        # Set elements to zero
+        for i in range(r):
+            for j in range(c):
+                if rowtrack[i] == -1 or coltrack[j] == -1:
+                    matrix[i][j] = 0
+
+#ROTATE THE ARRAY BY 90 DEGREE
+
+matrix = [
+    ["5", "1", "8"],
+    ["7", "6", "0"],
+    ["2", "0", "9"]
+]
+
+n = len(matrix)
+result = [[0 for _ in range(n)] for _ in range(n)]
+for i in range(0,n):
+    for j in range(0,n):
+        result[j][(n-1)-i] = matrix[i][j]
+print(result)
+
+#optimal (in-place)
+matrix = [
+    ["5", "1", "8"],
+    ["7", "6", "0"],
+    ["2", "0", "9"]
+]
+n = len(matrix)
+for i in range(0,n):
+    matrix[i].reverse()
+print(matrix)
