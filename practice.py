@@ -87,3 +87,56 @@ nums = [9,6,4,2,3,5,7,0,1]
 n = len(nums)
 print(n*(n+1)//2 - sum(nums))
 
+
+#max consecutive one
+nums = [1,0,0,0,1,1,1,1,1,0,0,0,1,1,0]
+n = len(nums)
+largest = float("-inf")
+count = 0
+for i in range(0,n):
+    if nums[i] == 1:
+        count += 1
+    else: 
+        count = 0
+    largest = max(largest,count)
+print(largest)
+
+
+#2 sum problem
+
+nums=[1,3,5,9,1,3,1,4]
+target = 10
+
+n = len(nums)
+hash_map={}
+for i in range(0,n):
+    remaining = target - nums[i]
+    if remaining in hash_map:
+        print([hash_map[remaining],i])
+        hash_map[nums[i]] = i
+
+
+#print max sub array
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+total = 0
+maxi = float("-inf")
+for i in range(0,n):
+    total = total + nums[i]
+    maxi = max(maxi,total)
+    if total < 0:
+        total = 0
+print(maxi)
+
+
+#buy and sell stock
+prices = [7,2,1,5,6,4,8]
+n = len(prices)
+max_profit = 0
+min_prices= float("inf")
+for i in range(0,n):
+    min_price =  min(min_prices,prices[i])
+    max_profit = max(max_profit,prices[i]-min_prices)
+print(max_profit)
+
+
