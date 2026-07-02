@@ -326,6 +326,14 @@ for i in range(0,n):
         print[hash_map[remaining],i]
     hash_map[nums[i]] = i
 
+n = len(nums)
+hash_map = {}
+for i in range(0,n):
+    remaining = target - nums[i]
+    if remaining in hash_map:
+        print([hash_map[remaining],i])
+    hash_map[nums[i]] = i
+
 #maximum sub array
 nums = [-2,1,-3,4,-1,2,1,-5,4]
 n = len(nums)
@@ -371,12 +379,13 @@ print (max_profit)
 
 
 max_profit = 0
-min_price = float("inf")
+min_prices = float("inf")
 n = len(prices)
 for i in range(0,n):
     min_prices = min(min_prices,prices[i])
     max_profit = max(max_profit,prices[i]-min_prices)
 print(max_profit)
+
 
 #rearrange elements by sign
 nums = [5,10,-3,-1,-10,6]
@@ -395,6 +404,18 @@ pos,neg = 0,1
 for i in range(0,n):
     if nums[i]>0:
         result[pos]=nums[i]
+        pos+=2
+    else:
+        result[neg] = nums[i]
+        neg+=2
+print(result)
+
+n = len(nums)
+result = [0]*n
+pos,neg = 0,1
+for i in range(0,n):
+    if nums[i]>0:
+        result[pos] = nums[i]
         pos+=2
     else:
         result[neg] = nums[i]
@@ -430,7 +451,6 @@ for num in my_set:
         longest=max(longest,count)
 print(longest)
 
-#print the matirx
 #print the matirx
 nums = [
     ["5", "1", "8"],
@@ -565,3 +585,59 @@ n = len(matrix)
 for i in range(0,n):
     matrix[i].reverse()
 print(matrix)
+
+#3sum problem
+arr = [-1,0,1,2,-1,-4]
+n = len(arr)
+my_set = set()
+for i in range(0,n):
+    for j in range(i+1,n):
+        for k in range(j+1,n):
+            if arr[i]+arr[j]+arr[k]==0:
+                temp = [arr[i],arr[j],arr[k]]
+                temp.sort()
+                my_set.add(tuple(temp))
+print([list(ans) for ans in my_set])
+
+#better
+arr = [-1,0,1,2,-1,-4]
+result = set()
+for i in range(0,n):
+    my_set = set()
+    for j in range(i+1,n):
+        third = -(arr[i]+arr[j])
+        if third in my_set:
+            temp = [arr[i],arr[j],third]
+            temp.sort()
+            result.add(tuple(temp))
+        my_set.add(arr[j])
+print([list(ans) for ans in result])
+
+#optimal
+arr = [-1,0,1,2,-1,-4]
+arr.sort()
+result = []
+for i in range(0,n):
+    if i>0 and arr[i]==arr[i-1]:
+        continue
+    left = i+1
+    right = n-1
+    while left<right:
+        total = arr[i]+arr[left]+arr[right]
+        if total<0:
+            left+=1
+        elif total>0:
+            right-=1
+        else:
+            result.append([arr[i],arr[left],arr[right]])
+            left+=1
+            right-=1
+            while left<right and arr[left]==arr[left-1]:
+                left+=1
+            while left<right and arr[right]==arr[right+1]:
+                right-=1
+print(result)
+
+#4 sum
+arr = [-1,0,1,2,-1,-4]
+#do it by yourself
