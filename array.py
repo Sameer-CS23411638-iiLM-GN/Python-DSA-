@@ -467,6 +467,7 @@ for i in range(0,row):
         else:
             print("*",end = "")
     print()
+
     
 #print lower triangle
 row = len(nums)
@@ -478,6 +479,8 @@ for i in range(0,row):
         else:
             print("*",end = "")
     print()
+
+
     
 #print the diagonal
 row = len(nums)
@@ -489,6 +492,7 @@ for i in range(0,row):
         else:
             print("*",end = "")
     print()
+
 
 #transpose of a matrix
 nums = [
