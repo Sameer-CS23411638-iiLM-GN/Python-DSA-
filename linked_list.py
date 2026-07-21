@@ -132,7 +132,7 @@ while temp is not None:
     front = temp.next
     temp.next = prev
     prev = temp
-    temp = front 
+    temp = front
     
 
 #FIND THE LL CYCLE - store the address of every node and put them in set if they found again cycle exist
@@ -196,3 +196,138 @@ while fast is not None and fast.next is not None:
             count += 1
         print(count)
 print(0)
+
+
+#ODD EVEN LINKED LIST
+if head is None and head.next is None:
+    print(head)
+values = [], temp = head
+while temp and temp.next:
+    values.append(temp.val)
+    temp = temp.next.next
+temp = head.next
+while temp and temp.next:
+    values.append(temp.val)
+    temp = temp.next.next
+temp = head
+index = 0
+while temp is not None:
+    temp.val = values[index]
+    index+=1
+    temp = temp.next
+print(head)
+
+#optimal choice change the links
+if head is None or head.next is None:
+    print(head)
+odd = head
+even = head.next
+even_head = even
+while even is not None and even.next is not None:
+    odd.next = odd.next.next
+    odd = odd.next
+    even.next = even.next.next
+    even = even.next
+    odd.next = even.head
+    print(head)
+
+#remove nth node from the end of list
+
+length = 0
+temp = head
+while temp is not None:
+    length += 1
+    temp = temp.next
+if length == n:
+    new_head = head.next
+    del head
+    print(new_head)
+position_to_stop = length - n
+temp = head
+count = 0
+while count<position_to_stop:
+    temp=temp.next
+    count+=1
+temp.next = temp.next.next
+print(head)
+
+#optimal
+
+slow = fast = head
+for _ in range(n):
+    fast = fast.next
+if fast==None:
+    print(head.next)
+while fast.next is not None:
+    slow = slow.next
+    fast = fast.next
+slow.next = slow.next.next
+print(head)
+
+#delete all occurences of a key
+k = key = 2
+if head.next is None and head.val == k:
+    print(None)
+temp = head
+prev = None
+new_head = head
+while temp is not None:
+    if temp.val == key:
+       if prev is not None:
+           temp.next.prev = prev
+       if temp == new_head:
+            new_head = new_head.next
+prev = temp
+temp = temp.next
+print(new_head) 
+
+#find pairs with given sum in DLL
+target = 7
+temp1 = head
+result = []
+while temp1 is not None:
+    temp2 = temp1.next
+    while temp2 is not None:
+        if temp1.data + temp2.data == target:
+            result.append([temp1.data, temp2.data])
+        temp2 = temp2.next
+    temp1 = temp1.next
+print(result)
+
+#optimal choice
+my_set = set()
+temp = head
+result = []
+while temp is not None:
+    remaining = target - temp.data
+    if remaining in my_set:
+        result.append([remaining, temp.data])
+    my_set.add(temp.data)
+    temp = temp.next
+print(result)
+
+#more optimal choice
+#sorted - use 2 pointer
+result = []
+left = head
+right = head
+while right is not None and right.next is not None:
+    right = right.next
+while left is not None and right is not None and left.data < right.data:
+    total = left.data + right.data
+    if total == target:
+        result.append([left.data, right.data])
+        left = left.next
+        right = right.prev
+    elif total < target:
+        left = left.next
+    else:
+        right = right.prev
+print(result)
+
+#remove duplicates from DLL
+if curr.prev == head:
+    curr.prev = None
+    head = curr
+curr.prev.prev.next = curr
+curr.prev = curr.prev.prev
