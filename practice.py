@@ -6,6 +6,7 @@ for i in range(0,n):
     largest = max(nums[i],largest)
 print(largest)
 
+
 #find the second maximum number
 nums = [55,32,-97,98,3,67]
 largest = float("-inf")
@@ -26,6 +27,7 @@ for i in range(0,n-1):
         print("false")
 print("true")
 
+
 #remove the duplicate
 
 nums = [1,1,1,2,3,4,4,7,9,9,9,10]
@@ -38,6 +40,7 @@ for k in freq_map:
     nums[j]=k
     j += 1
 print(j)
+
 
 #rotate the array by 1 place
 
@@ -53,6 +56,7 @@ n = len(nums)
 l = n%k
 nums[:] = nums[n-k:] + nums[:n-k]
 print(nums)
+
 
 ##move zeros to end
 # brute force
@@ -87,7 +91,6 @@ nums = [9,6,4,2,3,5,7,0,1]
 n = len(nums)
 print(n*(n+1)//2 - sum(nums))
 
-
 #max consecutive one
 nums = [1,0,0,0,1,1,1,1,1,0,0,0,1,1,0]
 n = len(nums)
@@ -101,7 +104,6 @@ for i in range(0,n):
     largest = max(largest,count)
 print(largest)
 
-
 #2 sum problem
 
 nums=[1,3,5,9,1,3,1,4]
@@ -114,6 +116,7 @@ for i in range(0,n):
     if remaining in hash_map:
         print([hash_map[remaining],i])
         hash_map[nums[i]] = i
+    
 
 
 #print max sub array
@@ -128,6 +131,13 @@ for i in range(0,n):
         total = 0
 print(maxi)
 
+n = len(nums)
+total = 0
+maxi = float("-inf")
+for i in range(0,n):
+    total = total + nums[i]
+    maxi = max(maxi)
+
 
 #buy and sell stock
 prices = [7,2,1,5,6,4,8]
@@ -138,6 +148,7 @@ for i in range(0,n):
     min_price =  min(min_prices,prices[i])
     max_profit = max(max_profit,prices[i]-min_prices)
 print(max_profit)
+
 
 #arrange the element by their sign
 nums = [5,10,-3,-1,-10,6]
