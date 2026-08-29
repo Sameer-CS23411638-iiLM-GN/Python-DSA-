@@ -13,3 +13,23 @@ def countBinaryStrings(n):
         b = new_b
     
     return a + b
+
+#recursion
+
+
+def countBinaryStrings(n, prev):
+    # base case
+    if n == 0:
+        return 1
+    
+    # always allowed to place 0
+    count = countBinaryStrings(n-1, 0)
+    
+    # place 1 only if previous was not 1
+    if prev == 0:
+        count += countBinaryStrings(n-1, 1)
+    
+    return count
+
+# call
+print(countBinaryStrings(3, 0))
